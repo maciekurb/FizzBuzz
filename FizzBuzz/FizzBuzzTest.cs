@@ -21,30 +21,37 @@ namespace FizzBuzz
             var result = _fizzBuzz.IsFizz(0);
             Assert.Equal(result, false);
         }
+
         [Theory]
         [InlineData(3)]
         [InlineData(6)]
         [InlineData(9)]
         [InlineData(12)]
+        [InlineData(13)]
         [InlineData(18)]
         [InlineData(21)]
+        [InlineData(1674937)]
         public void Is_Fizz_Must_Return_True(int value)
         {
             var result = _fizzBuzz.IsFizz(value);
             Assert.Equal(result, true);
         }
-        [Fact]
-        public void Is_Five_Fizz_Must_Return_False()
+
+        [Theory]
+        [InlineData(5)]
+        [InlineData(10)]
+        [InlineData(15)]
+        [InlineData(52)]
+        [InlineData(100)]
+        [InlineData(555)]
+        [InlineData(1235)]
+        [InlineData(54321)]
+        public void Is_Buzz_Must_Return_True(int value)
         {
-            var result = _fizzBuzz.IsFizz(5);
-            Assert.Equal(result, false);
-        }
-        [Fact]
-        public void Is_Ten_Buzz_Must_Return_True()
-        {
-            var result = _fizzBuzz.IsBuzz(10);
+            var result = _fizzBuzz.IsBuzz(value);
             Assert.Equal(result, true);
         }
+
         [Theory]
         [InlineData(15)]
         [InlineData(30)]
@@ -55,6 +62,31 @@ namespace FizzBuzz
         public void Is_Value_FizzBuzz_Must_Return_True(int value)
         {
             var result = _fizzBuzz.IsFizzBuzz(value);
+            Assert.Equal(result, true);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(4)]
+        [InlineData(86)]
+        public void Neutral_Must_Return_Same_Value(int value)
+        {
+            var result = _fizzBuzz.Go(value);
+            Assert.Equal(result, value.ToString());
+        }
+
+        [Fact]
+        public void Is_Five_Fizz_Must_Return_False()
+        {
+            var result = _fizzBuzz.IsFizz(5);
+            Assert.Equal(result, false);
+        }
+        
+        [Fact]
+        public void Is_Ten_Buzz_Must_Return_True()
+        {
+            var result = _fizzBuzz.IsBuzz(10);
             Assert.Equal(result, true);
         }
 
@@ -78,18 +110,6 @@ namespace FizzBuzz
             var result = _fizzBuzz.Go(5);
             Assert.Equal(result, "Buzz");
         }
-        [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(4)]
-        [InlineData(13)]
-        [InlineData(86)]
-        [InlineData(1674937)]
-        public void Neutral_Must_Return_Same_Value(int value)
-        {
-            var result = _fizzBuzz.Go(value);
-            Assert.Equal(result, value.ToString());
-        }
         
         [Fact]
         public void Check_Sequence()
@@ -98,6 +118,5 @@ namespace FizzBuzz
             string[] expectedResult = { "1", "2", "Fizz", "4", "Buzz" };
             Assert.Equal(result, expectedResult);
         }
-
     }
 }

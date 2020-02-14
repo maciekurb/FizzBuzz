@@ -13,23 +13,26 @@ namespace FizzBuzz
 
         public bool IsFizz(int number)
         {
-            return number % Fizzing == 0;
+            return number % Fizzing == 0 || number.ToString().Contains(Fizzing.ToString());
         }
         public bool IsBuzz(int number)
         {
-            return number % Buzzing == 0;
+            return number % Buzzing == 0 || number.ToString().Contains(Buzzing.ToString());
         }
         public bool IsFizzBuzz(int number)
         {            
-            //return IsFizz(number) && IsBuzz(number); - can't decide which option is more efficient 
             return number % (Fizzing * Buzzing) == 0;
         }
 
         public string Go(int number)
         {
-            if (IsFizzBuzz(number)) return "FizzBuzz";
-            if (IsBuzz(number)) return "Buzz";
-            if (IsFizz(number)) return "Fizz";
+            if (IsFizzBuzz(number)) 
+                return "FizzBuzz";
+            if (IsBuzz(number)) 
+                return "Buzz";
+            if (IsFizz(number)) 
+                return "Fizz";
+            
             return number.ToString();
         }
 
